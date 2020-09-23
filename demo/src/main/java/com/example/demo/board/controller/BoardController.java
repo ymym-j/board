@@ -58,7 +58,10 @@ public class BoardController {
 	}
 	
 	@DeleteMapping("/post/{id}")
-	public String delete(@PathVariable("id") Long id, Model model) {
+	public String delete(@PathVariable("id") Long id, Model model, HttpSession session) {
+		if(!session.getAttribute("userId").equals(boardService.get(id).getUserId())) {
+			return "redirect:/denied";
+		}
 		boardService.delete(id);
 		return "redirect:/oauth/board";
 	}

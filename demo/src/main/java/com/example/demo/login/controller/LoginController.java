@@ -62,4 +62,9 @@ public class LoginController {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(baseUrl);
         return uriBuilder.toUriString();
     }
+
+    @GetMapping("/denied")
+    public String denied() {
+        return "common/denied";
+    }
 }
